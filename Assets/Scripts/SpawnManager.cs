@@ -13,37 +13,29 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] float maxSpawnTimerSec;
     
     float spawnTimer;
-    GameManager gameManager;
    
     // Start is called before the first frame update
-    void Start()
-    {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        // InvokeRepeating("SpawnEnemy", 0.5f, spawnTimer);
-    }
 
     public IEnumerator SpawnDogs()
     {
-        while (gameManager.isGameActive)
+        while (MainManager.Instance.IsGameActive)
         {
             // The time between spawns is divided by the difficulty (+ difficulty, - time between spawns)
-            spawnTimer = Random.Range(minSpawnTimerSec, maxSpawnTimerSec) / gameManager.gameDifficulty;
+            spawnTimer = Random.Range(minSpawnTimerSec, maxSpawnTimerSec) / MainManager.Instance.Difficulty;
 
-            Debug.Log("Difficulty: " + gameManager.gameDifficulty);
+            Debug.Log("Difficulty: " + MainManager.Instance.Difficulty);
 
             Debug.Log("Spawn Timer: " + spawnTimer);
 
             yield return new WaitForSeconds(spawnTimer);
 
-            // Select a random Enemy
+            // Select a random Enemy prefab
             int enemyIndex = Random.Range(0, enemyPrefabs.Length);
 
-            // Instantiate such enemy
+            // Instantiate such Enemy
             Instantiate(enemyPrefabs[enemyIndex], SpawnAroundPos(), enemyPrefabs[enemyIndex].transform.rotation);
         }
         
-
-
     }
 
     private Vector3 SpawnAroundPos()

@@ -6,18 +6,11 @@ public class RotatePlayer : MonoBehaviour
 {
     [SerializeField] float rotationSpeed;
 
-    GameManager gameManager;
-
-    private void Start()
-    {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-    }
-
     // Update is called once per frame
     void Update()
     {
 
-        if (gameManager.isGameActive)
+        if (MainManager.Instance.IsGameActive)
         {
             float horizontalInput = Input.GetAxis("Horizontal");
             transform.Rotate(Vector3.up * horizontalInput * rotationSpeed * Time.deltaTime);

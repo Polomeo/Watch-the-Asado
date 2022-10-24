@@ -1723,6 +1723,7 @@ GameObject:
   - component: {fileID: 1380419834}
   - component: {fileID: 1380419833}
   - component: {fileID: 1380419832}
+  - component: {fileID: 1380419835}
   m_Layer: 5
   m_Name: Easy Button
   m_TagString: UI_DifficultyMenu
@@ -1833,6 +1834,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380419830}
   m_CullTransparentMesh: 1
+--- !u!114 &1380419835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380419830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26ad5b4362d3a34f8ad3f549837dad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: 1
 --- !u!1 &1392237326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1845,6 +1859,7 @@ GameObject:
   - component: {fileID: 1392237330}
   - component: {fileID: 1392237329}
   - component: {fileID: 1392237328}
+  - component: {fileID: 1392237331}
   m_Layer: 5
   m_Name: Medium Button
   m_TagString: UI_DifficultyMenu
@@ -1955,6 +1970,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1392237326}
   m_CullTransparentMesh: 1
+--- !u!114 &1392237331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392237326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26ad5b4362d3a34f8ad3f549837dad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: 2
 --- !u!1 &1481685691
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,6 +2252,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621359620}
   m_CullTransparentMesh: 1
+--- !u!1 &1655432342
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1655432344}
+  - component: {fileID: 1655432343}
+  m_Layer: 0
+  m_Name: Main Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1655432343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655432342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb6476776f0b084c92c35f75c7aad7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Difficulty: 0
+--- !u!4 &1655432344
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655432342}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 513.095, y: 306.24997, z: 54.764984}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1793901307
 GameObject:
   m_ObjectHideFlags: 0
@@ -2371,6 +2444,7 @@ GameObject:
   - component: {fileID: 2082904663}
   - component: {fileID: 2082904662}
   - component: {fileID: 2082904661}
+  - component: {fileID: 2082904664}
   m_Layer: 5
   m_Name: Hard Button
   m_TagString: UI_DifficultyMenu
@@ -2481,6 +2555,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2082904659}
   m_CullTransparentMesh: 1
+--- !u!114 &2082904664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082904659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e26ad5b4362d3a34f8ad3f549837dad9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: 3
 --- !u!1 &2141957796
 GameObject:
   m_ObjectHideFlags: 0

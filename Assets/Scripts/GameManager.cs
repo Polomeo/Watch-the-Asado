@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public bool isGameActive;
+    public bool isGameActive = false;
     public bool isGameOver = false;
     public int gameDifficulty;
 
@@ -35,37 +35,35 @@ public class GameManager : MonoBehaviour
 
         isGameActive = false;
 
-    }
+        StartGame(MainManager.Instance.Difficulty);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
-
 
     // Game Loop Functions
     public void StartGame(int difficulty)
     {
         // Activate Game
-        isGameActive = true;
+        MainManager.Instance.IsGameActive = true;
 
         // Set difficulty
-        gameDifficulty = difficulty;
+        MainManager.Instance.Difficulty = difficulty;
 
         // Set the UI
         scoreText.text = "Score: " + 0;
         scoreText.gameObject.SetActive(true);
-        mainMenu.gameObject.SetActive(false);
         
         // Set the count of food targets left
         targetsLeft = targets.Count;
 
+        // Start the spawner
+        StartSpawn();
+    }
+    private void StartSpawn()
+    {
         // Start spawning enemies
         StartCoroutine(spawnManager.SpawnDogs());
-
-
     }
+
 
     public void UpdateScore(int scoreToAdd)
     {
@@ -98,12 +96,12 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         // Game Loop
-        isGameActive = false;
-        isGameOver = true;
+        MainManager.Instance.IsGameActive = false;
+        MainManager.Instance.IsGameOver = true;
 
         // UI
         gameOverText.gameObject.SetActive(true);
-        finalScoreText.SetText("Puntos: " + score);
+        finalScoreText.SetText("Points: " + score);
         finalScoreText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
 

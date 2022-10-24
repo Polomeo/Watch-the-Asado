@@ -20,13 +20,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public AudioClip biteAudio;
     [SerializeField] public AudioClip gameOverAudio;
 
-    GameManager gameManager;
 
     private void Start()
     {
-        // Inicializate
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-
         // Audio
         playerAudio = GetComponent<AudioSource>();
 
@@ -36,7 +32,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Player Input
-        if (gameManager.isGameActive)
+        if (MainManager.Instance.IsGameActive)
         {
             if (Input.GetKeyDown(KeyCode.Space))
         {
