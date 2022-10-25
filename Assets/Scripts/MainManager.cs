@@ -31,6 +31,11 @@ public class MainManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        LoadHighScore();
+    }
+
     public void SetGameDifficulty(int difficulty)
     {
         // Sets the difficulty

@@ -40,7 +40,11 @@ public class EnemyGhoul : MonoBehaviour
             Debug.Log("Target reached!");
 
             // Lowers the score
-            gameManager.UpdateScore(-10);
+            if (!MainManager.Instance.IsGameOver)
+            {
+                gameManager.UpdateScore(-10);
+
+            }
 
             // Eats a steak
             gameManager.EatTargetFood();
@@ -56,7 +60,11 @@ public class EnemyGhoul : MonoBehaviour
         {
             Debug.Log("Player hit!");
 
-            gameManager.UpdateScore(-10);
+            if (!MainManager.Instance.IsGameOver)
+            {
+                gameManager.UpdateScore(-10);
+
+            }
 
             Destroy(gameObject);
 

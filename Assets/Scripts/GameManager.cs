@@ -12,14 +12,15 @@ public class GameManager : MonoBehaviour
     public int gameDifficulty;
 
     SpawnManager spawnManager;
-    PlayerController playerController;
     AudioHandler audioHandler;
 
     [SerializeField] GameObject mainMenu;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI gameOverText;
     [SerializeField] TextMeshProUGUI finalScoreText;
+    [SerializeField] TMP_InputField highscoreNameInput;
     [SerializeField] Button restartButton;
+    [SerializeField] Button saveScoreButton;
     [SerializeField] List<GameObject> targets;
 
     int score;
@@ -30,7 +31,6 @@ public class GameManager : MonoBehaviour
     {
         // Inicialize the external relationships
         spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         audioHandler = GameObject.FindWithTag("MainCamera").GetComponent<AudioHandler>();
 
         isGameActive = false;
@@ -101,12 +101,25 @@ public class GameManager : MonoBehaviour
 
         // UI
         gameOverText.gameObject.SetActive(true);
-        finalScoreText.SetText("Points: " + score);
+
+        // Highscore
+        if (score > MainManager.Instance.HighScore)
+        {
+            finalScoreText.SetText("Score: " + score + ".\n New Highscore!");
+            highscoreNameInput.gameObject.SetActive(true);
+            saveScoreButton.gameObject.SetActive(true);
+            
+        }
+        else
+        {
+            finalScoreText.SetText("Points: " + score);
+        }
+
         finalScoreText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
 
         // Audio
-        playerController.PlayAudioOnce(playerController.gameOverAudio);
+        // playerController.PlayAudioOnce(playerController.gameOverAudio);
         audioHandler.PlayAudioOnce(audioHandler.endGameAudio); // Stops the backround music
 
         // Save Data
@@ -117,6 +130,22 @@ public class GameManager : MonoBehaviour
     {
         // Re-loads the current scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void SaveScoreButton()
+    {
+        // Get the text from the input
+        string playerName = highscoreNameInput.text;
+        Debug.Log("Player name: " + playerName);
+
+        // Save Data
+        MainManager.Instance.SaveHighScore(score, playerName);
+
+        // Load Data
+        MainManager.Instance.LoadHighScore();
+
+        // Disable button
+        saveScoreButton.gameObject.SetActive(false);
     }
 
     // Audio Functions

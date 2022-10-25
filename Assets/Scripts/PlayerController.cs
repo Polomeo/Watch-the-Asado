@@ -36,8 +36,17 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
         {
-            Shoot(boneSpeed, projectile);
+                Shoot(boneSpeed, projectile);
         }
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+
+                // DEBUG test to reset score
+                MainManager.Instance.SaveHighScore(0, "Test");
+                MainManager.Instance.LoadHighScore();
+
+                Debug.Log("Highscore reset. HS: " + MainManager.Instance.HighScore + ", Name: " + MainManager.Instance.HighScoreName);
+            }
 
         }
 
