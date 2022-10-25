@@ -108,6 +108,9 @@ public class GameManager : MonoBehaviour
         // Audio
         playerController.PlayAudioOnce(playerController.gameOverAudio);
         audioHandler.PlayAudioOnce(audioHandler.endGameAudio); // Stops the backround music
+
+        // Save Data
+        MainManager.Instance.SaveHighScore(score, "Polo");
     }
 
     public void RestartGame()

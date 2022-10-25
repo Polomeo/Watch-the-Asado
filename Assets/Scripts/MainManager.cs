@@ -1,8 +1,10 @@
+using Palmmedia.ReportGenerator.Core.Reporting.Builders.Rendering;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using System.IO;
 
 public class MainManager : MonoBehaviour
 {
@@ -14,9 +16,12 @@ public class MainManager : MonoBehaviour
     public bool IsGameOver = false;
     public int Score;
 
+    public int HighScore;
+    public string HighScoreName;
+
     private void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
@@ -35,4 +40,38 @@ public class MainManager : MonoBehaviour
         // Launches the game scene
         SceneManager.LoadScene(1);
     }
+
+
+    // Serializable class for saving data
+    [System.Serializable]
+    class SaveData
+    {
+        public int HighScoreSv;
+        public string HighScoreNameSv;
+    }
+
+    public void SaveHighScore(int hs, string playerName)
+    {
+        SaveData data = new SaveData();
+        data.HighScoreSv = hs;
+        data.HighScoreNameSv = playerName;
+
+        // JSON functions to store data on persistent data path
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+    }
+
+    public void LoadHighScore()
+    {
+        string path = Application.persistentDataPath + "/savefile.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            HighScore = data.HighScoreSv;
+            HighScoreName = data.HighScoreNameSv;
+        }
+    }
+
 }
