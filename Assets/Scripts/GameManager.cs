@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     SpawnManager spawnManager;
     AudioHandler audioHandler;
 
-    [SerializeField] GameObject mainMenu;
+    [SerializeField] GameObject lifeCounter;
+    [SerializeField] GameObject[] hearts;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI gameOverText;
     [SerializeField] TextMeshProUGUI finalScoreText;
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     int score;
     int targetsLeft;
+    int livesLeft;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +35,8 @@ public class GameManager : MonoBehaviour
         spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
         audioHandler = GameObject.FindWithTag("MainCamera").GetComponent<AudioHandler>();
 
-        isGameActive = false;
+        // Count the lives left
+        livesLeft = hearts.Length;
 
         StartGame(MainManager.Instance.Difficulty);
 
@@ -51,6 +54,7 @@ public class GameManager : MonoBehaviour
         // Set the UI
         scoreText.text = "Score: " + 0;
         scoreText.gameObject.SetActive(true);
+        lifeCounter.gameObject.SetActive(true);
         
         // Set the count of food targets left
         targetsLeft = targets.Count;
@@ -91,6 +95,18 @@ public class GameManager : MonoBehaviour
         // Audio
         audioHandler.PlayAudioOnce(audioHandler.chowSoundFX);
        
+    }
+
+    public void PlayerHit()
+    {
+        livesLeft--;
+        hearts[livesLeft].gameObject.SetActive(false);  
+
+        if(livesLeft == 0)
+        {
+            GameOver();
+        }
+
     }
 
     public void GameOver()

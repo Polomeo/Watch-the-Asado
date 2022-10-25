@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    GameManager gameManager;
+
     [Header("Shooting")]
 
     [SerializeField] Transform shootPoint;
@@ -21,10 +23,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public AudioClip gameOverAudio;
 
 
+
     private void Start()
     {
         // Audio
         playerAudio = GetComponent<AudioSource>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
     }
 
@@ -55,6 +59,7 @@ public class PlayerController : MonoBehaviour
     public void GetBiten()
     {
         playerAudio.PlayOneShot(biteAudio);
+        gameManager.PlayerHit();
     }
 
     public void PlayAudioOnce(AudioClip clip)
