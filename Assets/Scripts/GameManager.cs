@@ -100,11 +100,17 @@ public class GameManager : MonoBehaviour
     public void PlayerHit()
     {
         livesLeft--;
-        hearts[livesLeft].gameObject.SetActive(false);  
 
+        if (MainManager.Instance.IsGameActive)
+        {
+            hearts[livesLeft].gameObject.SetActive(false);
+
+        }
+        
         if(livesLeft == 0)
         {
             GameOver();
+
         }
 
     }
